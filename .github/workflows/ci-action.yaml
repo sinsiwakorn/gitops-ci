@@ -71,8 +71,8 @@ jobs:
           context: ./
           # Note: tags has to be all lower-case
           tags: |
-            imrishav/reactapp-ci:${{ github.sha }} 
-            ghcr.io/imrishav/reactapp-ci:${{ github.sha }}
+            sinsiwakorn/reactapp-ci:${{ github.sha }} 
+            ghcr.io/sinsiwakorn/reactapp-ci:${{ github.sha }}
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
@@ -85,13 +85,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: imrishav/gitops-infra
+          repository: sinsiwakorn/gitops-infra
           ref: 'main'
           token: ${{ secrets.G_TOKEN }}
       - name: setup git config
         run: |
           git config --global user.email "rishav@live.co.uk"
-          git config --global user.name "imrishav"
+          git config --global user.name "sinsiwakorn"
           echo ${{ github.sha }}
           sed -i "s#${{ github.actor }}.*#${{ github.actor }}/reactapp-ci:${{ github.sha }}#g" deployment.yaml
           git add -A
